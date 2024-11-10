@@ -13,6 +13,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { nylas } from "./lib/nylas";
 
+// @ts-ignore
 export async function onboardingAction(prevState: any, formData: FormData) {
   const session = await requireUser();
 
@@ -35,7 +36,7 @@ export async function onboardingAction(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
-  const OnboardingData = await prisma.user.update({
+  await prisma.user.update({
     where: {
       id: session.user?.id,
     },
@@ -89,6 +90,7 @@ export async function onboardingAction(prevState: any, formData: FormData) {
   return redirect("/onboarding/grant-id");
 }
 
+// @ts-ignore
 export async function SettingsAction(prevState: any, formData: FormData) {
   const session = await requireUser();
 
@@ -100,7 +102,7 @@ export async function SettingsAction(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
-  const user = await prisma.user.update({
+  await prisma.user.update({
     where: {
       id: session.user?.id as string,
     },
@@ -113,7 +115,9 @@ export async function SettingsAction(prevState: any, formData: FormData) {
   return redirect("/dashboard");
 }
 
+// @ts-ignore
 export async function CreateEventTypeAction(
+  // @ts-ignore
   prevState: any,
   formData: FormData
 ) {
@@ -138,7 +142,7 @@ export async function CreateEventTypeAction(
     return submission.reply();
   }
 
-  const data = await prisma.eventType.create({
+  await prisma.eventType.create({
     data: {
       title: submission.value.title,
       duration: submission.value.duration,
@@ -152,6 +156,7 @@ export async function CreateEventTypeAction(
   return redirect("/dashboard");
 }
 
+// @ts-ignore
 export async function EditEventTypeAction(prevState: any, formData: FormData) {
   const session = await requireUser();
 
@@ -175,7 +180,7 @@ export async function EditEventTypeAction(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
-  const data = await prisma.eventType.update({
+  await prisma.eventType.update({
     where: {
       id: formData.get("id") as string,
       userId: session.user?.id as string,
@@ -195,7 +200,7 @@ export async function EditEventTypeAction(prevState: any, formData: FormData) {
 export async function DeleteEventTypeAction(formData: FormData) {
   const session = await requireUser();
 
-  const data = await prisma.eventType.delete({
+  await prisma.eventType.delete({
     where: {
       id: formData.get("id") as string,
       userId: session.user?.id as string,
@@ -205,6 +210,7 @@ export async function DeleteEventTypeAction(formData: FormData) {
   return redirect("/dashboard");
 }
 
+// @ts-ignore
 export async function updateEventTypeStatusAction(
   prevState: any,
   {
@@ -218,7 +224,7 @@ export async function updateEventTypeStatusAction(
   try {
     const session = await requireUser();
 
-    const data = await prisma.eventType.update({
+    await prisma.eventType.update({
       where: {
         id: eventTypeId,
         userId: session.user?.id as string,
@@ -242,7 +248,7 @@ export async function updateEventTypeStatusAction(
 }
 
 export async function updateAvailabilityAction(formData: FormData) {
-  const session = await requireUser();
+  await requireUser();
 
   const rawData = Object.fromEntries(formData.entries());
   const availabilityData = Object.keys(rawData)
@@ -360,7 +366,7 @@ export async function cancelMeetingAction(formData: FormData) {
     throw new Error("User not found");
   }
 
-  const data = await nylas.events.destroy({
+  await nylas.events.destroy({
     eventId: formData.get("eventId") as string,
     identifier: userData?.grantId as string,
     queryParams: {
