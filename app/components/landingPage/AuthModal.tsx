@@ -8,8 +8,6 @@ import {
 
 import Logo from "@/public/logo.png";
 import Image from "next/image";
-import GooleLogo from "@/public/google.svg";
-import GitHubLogo from "@/public/github.svg";
 
 import { signIn } from "@/app/lib/auth";
 import { GitHubAuthButton, GoogleAuthButton } from "../SubmitButton";
