@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ReactNode } from "react";
-import { requireUser } from "../lib/hooks";
 import prisma from "../lib/db";
 import { redirect } from "next/navigation";
 import Logo from "@/public/logo.png";

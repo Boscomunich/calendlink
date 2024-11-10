@@ -7,7 +7,7 @@ export const nylasConfig = {
   apiUri: process.env.NYLAS_API_URL,
 };
 
-const AuthConfig = {
+export const AuthConfig = {
   clientId: process.env.NYLAS_CLIENT_ID as string,
   redirectUri: "http://localhost:3000/oauth/exchange",
 };

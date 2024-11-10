@@ -14,7 +14,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import prisma from "@/lib/prisma";
 import { format, fromUnixTime } from "date-fns";
-import { Icon, Video } from "lucide-react";
+import { Video } from "lucide-react";
 
 import React from "react";
 
@@ -70,10 +70,13 @@ const MeetingsPage = async () => {
                 <div className="grid grid-cols-3 justify-between items-center">
                   <div>
                     <p className="text-muted-foreground text-sm">
+                      {/* @ts-ignore */}
                       {format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}
                     </p>
                     <p className="text-muted-foreground text-xs pt-1">
+                      {/* @ts-ignore */}
                       {format(fromUnixTime(item.when.startTime), "hh:mm a")} -{" "}
+                      {/* @ts-ignore */}
                       {format(fromUnixTime(item.when.endTime), "hh:mm a")}
                     </p>
                     <div className="flex items-center mt-1">
