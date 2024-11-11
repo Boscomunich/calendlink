@@ -9,7 +9,7 @@ export const nylasConfig = {
 
 export const AuthConfig = {
   clientId: process.env.NYLAS_CLIENT_ID as string,
-  redirectUri: "http://localhost:3000/oauth/exchange",
+  redirectUri: "https://calendlink.vercel.app/oauth/exchange",
 };
 export const nylas = new Nylas({
   apiKey: process.env.NYLAS_API_KEY!,
