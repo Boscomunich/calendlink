@@ -23,13 +23,9 @@ export async function GET(req: NextRequest) {
     code,
   };
 
-  console.log(codeExchangePayload)
-
   try {
-    console.log('got here')
     const response = await nylas.auth.exchangeCodeForToken(codeExchangePayload);
     const { grantId, email } = response;
-    console.log('response:', response)
 
     await prisma.user.update({
       where: {
